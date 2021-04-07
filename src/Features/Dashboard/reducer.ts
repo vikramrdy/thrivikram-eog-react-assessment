@@ -4,8 +4,16 @@ export type Measurements = {
     at: any;
     metric: string;
     unit: string;
-    value: number;
+    value: string;
 }
+
+export type LiveMetricsTypes = {
+    liveData: Array<Object>;
+    metric: string;
+    value: string;
+    at: string;
+    unit: string;
+};
 
 export type Metrics = {
     metric: string;
@@ -18,10 +26,12 @@ export type ApiErrorAction = {
 
 export type InitialState = {
     selectedMetricsWithMeasurements: Array<Metrics>;
+    liveData: Measurements;
 };
 
-const initialState : InitialState = {
-    selectedMetricsWithMeasurements:[],
+const initialState: InitialState = {
+    selectedMetricsWithMeasurements: [],
+    liveData: { at: "", metric: "", value: "", unit: "" },
 };
 
 const slice = createSlice({
@@ -32,6 +42,9 @@ const slice = createSlice({
             state.selectedMetricsWithMeasurements = action.payload;
         },
         metricsApiErrorReceived: (state, action: PayloadAction<ApiErrorAction>) => state,
+        metricLiveDataRecevied: (state, action: PayloadAction<LiveMetricsTypes>) => {
+            state.liveData = action.payload;
+        },
     },
 });
 

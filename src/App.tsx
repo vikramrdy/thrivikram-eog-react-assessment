@@ -7,7 +7,8 @@ import React from "react";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Provider as UrqlProvider, createClient } from "urql";
+import { Provider as UrqlProvider, createClient, defaultExchanges, subscriptionExchange } from "urql";
+import { SubscriptionClient } from "subscriptions-transport-ws";
 
 import Header from "./components/Header";
 import Wrapper from "./components/Wrapper";
@@ -29,8 +30,19 @@ const theme = createMuiTheme({
   },
 });
 
+const subscriptionClient = new SubscriptionClient('wss://react.eogresources.com/graphql', {
+  reconnect: true,
+});
+
+
 const client = createClient({
   url: "https://react.eogresources.com/graphql",
+  exchanges: [
+    ...defaultExchanges,
+    subscriptionExchange({
+      forwardSubscription: (operation) => subscriptionClient.request(operation),
+    }),
+  ],
 });
 
 const App = () => (
