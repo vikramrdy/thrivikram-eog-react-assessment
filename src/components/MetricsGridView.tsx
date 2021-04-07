@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme: Theme) =>
  * ];
  */
 
- const getMetricsData = (state: IState) => {
+const getMetricsData = (state: IState) => {
   return state.metrics;
 };
 
@@ -80,10 +80,10 @@ const MetricsGridView = () => {
   return (
     <div className={classes.root}>
       <GridList cellHeight={100} spacing={16} className={classes.gridList}>
-        {selectedMetricsWithMeasurements.map((metricObj: Metrics, index) => 
-          <GridListTile classes={{ root: classes.tile}} style={{ backgroundColor: COLORS[metricObj.metric]}} key={metricObj.metric}>
-             <p style={{ textAlign: "center", verticalAlign: "middle" }}>{metricObj.metric}</p>
-             <GridListTileBar title={metricObj.measurements[metricObj.measurements.length -1].value} /> 
+        {selectedMetricsWithMeasurements.map((metricObj: Metrics) =>
+          <GridListTile classes={{ root: classes.tile }} style={{ backgroundColor: COLORS[metricObj.metric] }} key={metricObj.metric}>
+            <p style={{ textAlign: "center", verticalAlign: "middle" }}>{metricObj.metric}</p>
+            <GridListTileBar title={metricObj.measurements[metricObj.measurements.length - 1].value} />
           </GridListTile>
         )}
       </GridList>

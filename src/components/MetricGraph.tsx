@@ -34,7 +34,7 @@ const getMetricsData = (state: IState) => {
 const MetricGraph = () => {
   const { selectedMetricsWithMeasurements } = useSelector(getMetricsData);
 
-  const data: Array<any> = selectedMetricsWithMeasurements.map((metric) => ({
+  const data: Array<any> = selectedMetricsWithMeasurements.map((metric: any) => ({
     x: [...metric.measurements].map((m) => moment(m.at).format('h:mm:ss A')),
     y: [...metric.measurements].map((m) => m.value),
     name: metric.metric,
@@ -62,13 +62,13 @@ const MetricGraph = () => {
         yaxis: {
           title: 'PSI',
           dtick: 200,
-          titlefont: {color: '#1f77b4'},
-          tickfont: {color: '#1f77b4'}
+          titlefont: { color: '#1f77b4' },
+          tickfont: { color: '#1f77b4' }
         },
         yaxis2: {
           title: '%',
-          titlefont: {color: '#ff7f0e'},
-          tickfont: {color: '#ff7f0e'},
+          titlefont: { color: '#ff7f0e' },
+          tickfont: { color: '#ff7f0e' },
           dtick: 10,
           anchor: 'free',
           overlaying: 'y',
@@ -76,8 +76,8 @@ const MetricGraph = () => {
         },
         yaxis3: {
           title: 'F',
-          titlefont: {color: '#d62728'},
-          tickfont: {color: '#d62728'},
+          titlefont: { color: '#d62728' },
+          tickfont: { color: '#d62728' },
           dtick: 200,
           anchor: 'x',
           overlaying: 'y',
