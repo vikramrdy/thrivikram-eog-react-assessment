@@ -61,19 +61,20 @@ const Dashboard = () => {
 
   return (
     <div className={classes.root}>
-      <Grid direction="column" container>
-        <Grid item>
-          <SelectMetrics onChange={(values: Array<{ title: String }>) => setMetrics(values)} />
-        </Grid>
-        <Grid item>
-        <MetricsGridView />
-        </Grid>
-        <Grid item>
-          <Paper elevation={1}>
+      <Paper elevation={1}>
+
+        <Grid direction="column" container>
+          <Grid item xs={12}>
+            <SelectMetrics onChange={(values: Array<{ title: String }>) => setMetrics(values)} />
+          </Grid>
+          <Grid item xs={12}>
+            <MetricsGridView />
+          </Grid>
+          <Grid item xs={12}>
             <MetricGraph />
-          </Paper>
+          </Grid>
         </Grid>
-      </Grid>
+      </Paper>
     </div>
   );
 };
